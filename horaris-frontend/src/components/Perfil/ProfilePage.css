@@ -1,0 +1,72 @@
+.profile-container {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.profile-section {
+    margin-bottom: 20px;
+}
+
+.profile-section h2 {
+    margin-bottom: 10px;
+}
+
+.info,
+.settings,
+.preferences {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Arquivo separado de estilo para a página de perfil - ProfilePage.css */
+.container {
+    @apply flex flex-col items-center justify-center min-h-screen bg-gray-100;
+}
+
+.profile-header {
+    @apply flex items-center justify-between w-full max-w-4xl p-4 bg-white shadow-md;
+}
+
+.profile-title {
+    @apply text-2xl font-semibold text-gray-700;
+}
+
+.profile-content {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mt-8;
+}
+
+.section {
+    @apply bg-white p-4 shadow-md rounded-lg;
+}
+
+.section-title {
+    @apply text-xl font-semibold text-gray-600 mb-4;
+}
+
+.section-content {
+    @apply text-sm text-gray-500;
+}
+
+.action-buttons {
+    @apply flex justify-end mt-4;
+}
+
+.action-button {
+    @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600;
+}

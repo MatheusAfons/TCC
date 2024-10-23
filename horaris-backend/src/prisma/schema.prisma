@@ -1,0 +1,45 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+// Modelos ajustados para MongoDB
+
+model Professor {
+    id              String              @id @default(auto()) @map("_id") @db.ObjectId
+    nome            String
+    email           String              @unique
+    disponibilidade String              // Exemplo: 'segunda, quarta, sexta'
+    materias        MateriaProfessor[]  // Relacionamento com tabela intermediária
+    grade           Grade[]             // Relacionamento com grades
+    Telefone        String
+}
+
+model Materia {
+    id          String              @id @default(auto()) @map("_id") @db.ObjectId
+    nome        String
+    professores MateriaProfessor[]  // Relacionamento com tabela intermediária
+    grades      Grade[]             // Se houver uma relação direta entre Materia e Grade
+}
+
+// Tabela intermediária para a relação muitos-para-muitos entre Professor e Materia
+model MateriaProfessor {
+    id          String     @id @default(auto()) @map("_id") @db.ObjectId
+    professor   Professor  @relation(fields: [professorId], references: [id])
+    professorId String     @db.ObjectId
+    materia     Materia    @relation(fields: [materiaId], references: [id])
+    materiaId   String     @db.ObjectId
+}
+
+model Grade {
+    id          String     @id @default(auto()) @map("_id") @db.ObjectId
+    professor   Professor? @relation(fields: [professorId], references: [id])
+    professorId String?    @db.ObjectId
+    materia     Materia    @relation(fields: [materiaId], references: [id])
+    materiaId   String     @db.ObjectId
+    horario     String     // Exemplo: '08:00 - 10:00'
+}
